@@ -26,7 +26,6 @@ package jni.utils;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -353,24 +352,13 @@ public final class JniUtils {
     	try {
 	    	File skypeFramework = new File(libraryFile.getCanonicalFile().getParentFile(), "Skype.Framework");
 	    	InputStream skypeFrameworkStream = JniUtils.class.getResourceAsStream("/"+"Skype.Framework");
-	    	writeStreamToFile(skypeFrameworkStream, skypeFramework);
+	    	StreamUtils.writeStreamToFile(skypeFrameworkStream, skypeFramework);
     	}
     	catch(IOException e) {
     		throw new IllegalStateException(e);
     	}
 	}
 
-
-	private static void writeStreamToFile(InputStream skypeFrameworkStream,
-			File skypeFramework) throws FileNotFoundException,
-			IOException {
-		FileOutputStream out = new FileOutputStream(skypeFramework);
-		int count;
-		byte[] buffer = new byte[1024];
-		while(0 < (count = skypeFrameworkStream.read(buffer))) {
-		    out.write(buffer, 0, count);
-		}
-	}
 
 	private static void cleanUpOldLibraryFiles(final String libraryFileName) {
         final String fileNamePrefix = libraryFileName.substring(0, libraryFileName.indexOf('.'));
@@ -393,11 +381,7 @@ public final class JniUtils {
         try {
             final String fileNamePrefix = libraryFileName.substring(0, libraryFileName.indexOf('.'));
             final String extension = libraryFileName.substring(libraryFileName.lastIndexOf('.'));
-            File libraryFile = File.createTempFile(fileNamePrefix, extension);
-            libraryFile.deleteOnExit();
-            writeStreamToFile(in, libraryFile);
-            
-            return libraryFile;
+            return StreamUtils.getStreamAsTempFile(in, fileNamePrefix, extension);
         } catch(IOException e) {
             throw new RuntimeException("Writing " + libraryFileName + " failed.");
         } finally {
@@ -413,7 +397,7 @@ public final class JniUtils {
             }
         }
     }
-    
+
 	/**
 	 * The methods of this class should be used staticly.
 	 * That is why the constructor is private.
