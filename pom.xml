@@ -13,9 +13,9 @@
 	<description>
 	</description>
 	<scm>
-		<connection>scm:git:git@github.com:taksan/native-utils.git</connection>
-		<developerConnection>scm:git:git@github.com:taksan/native-utils.git</developerConnection>
-		<url>git@github.com:taksan/native-utils.git</url>
+		<connection>scm:git:git@github.com:taksan/jni-utils.git</connection>
+		<developerConnection>scm:git:git@github.com:taksan/jni-utils.git</developerConnection>
+		<url>git@github.com:taksan/jni-utils.git</url>
 	</scm>
 	<build>
 		<plugins>
