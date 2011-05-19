@@ -6,7 +6,7 @@
 		<groupId>org.sonatype.oss</groupId>
 		<version>7</version>
 	</parent>
-	<groupId>org.github.taksan</groupId>
+	<groupId>com.github.taksan</groupId>
 	<artifactId>jni-utils</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>JNI Utility Classes</name>
