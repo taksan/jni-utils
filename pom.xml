@@ -7,7 +7,7 @@
 	</parent>
 	<groupId>com.github.taksan</groupId>
 	<artifactId>jni-utils</artifactId>
-	<version>1.0</version>
+	<version>1.1-SNAPSHOT</version>
 	<name>JNI Utility Classes</name>
 	<description>
 	</description>
